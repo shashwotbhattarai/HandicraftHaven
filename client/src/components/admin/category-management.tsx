@@ -92,6 +92,7 @@ export function CategoryManagement() {
   });
 
   const onSubmit = (data: CategoryFormData) => {
+    console.log('Form submitted with data:', data);
     const categoryData = {
       ...data,
       isActive: true
