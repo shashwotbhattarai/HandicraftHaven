@@ -159,9 +159,15 @@ export function ProductManagement() {
     <div className="bg-white rounded-xl shadow-lg p-8">
       <div className="flex justify-between items-center mb-6">
         <h3 className="text-2xl font-semibold text-artisan-dark">Product Management</h3>
-        <Dialog open={isDialogOpen} onOpenChange={handleDialogClose}>
+        <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
-            <Button className="bg-artisan-chocolate hover:bg-artisan-brown text-white font-medium transition-colors duration-200">
+            <Button 
+              className="bg-artisan-chocolate hover:bg-artisan-brown text-white font-medium transition-colors duration-200"
+              onClick={() => {
+                console.log('Add Product button clicked');
+                setIsDialogOpen(true);
+              }}
+            >
               <Plus className="mr-2 h-4 w-4" />
               Add New Product
             </Button>

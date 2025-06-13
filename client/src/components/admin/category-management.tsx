@@ -139,13 +139,29 @@ export function CategoryManagement() {
     <div className="bg-white rounded-xl shadow-lg p-8">
       <div className="flex justify-between items-center mb-6">
         <h3 className="text-2xl font-semibold text-artisan-dark">Category Management</h3>
-        <Dialog open={isDialogOpen} onOpenChange={handleDialogClose}>
-          <DialogTrigger asChild>
-            <Button className="bg-artisan-chocolate hover:bg-artisan-brown text-white font-medium transition-colors duration-200">
-              <Plus className="mr-2 h-4 w-4" />
-              Add New Category
-            </Button>
-          </DialogTrigger>
+        <div className="flex gap-2">
+          <Button 
+            className="bg-artisan-chocolate hover:bg-artisan-brown text-white font-medium transition-colors duration-200"
+            onClick={() => {
+              console.log('Add Category button clicked, current dialog state:', isDialogOpen);
+              setIsDialogOpen(true);
+              console.log('Dialog state set to true');
+            }}
+          >
+            <Plus className="mr-2 h-4 w-4" />
+            Add New Category
+          </Button>
+          <Button 
+            variant="outline"
+            onClick={() => {
+              console.log('Debug: Current dialog state:', isDialogOpen);
+              console.log('Debug: Categories:', categories);
+            }}
+          >
+            Debug
+          </Button>
+        </div>
+        <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogContent>
             <DialogHeader>
               <DialogTitle>
