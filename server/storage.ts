@@ -3,7 +3,8 @@ import {
   Product, InsertProduct, ProductWithCategory,
   Order, InsertOrder, OrderWithItems,
   OrderItem, InsertOrderItem,
-  CartItem, InsertCartItem, CartItemWithProduct
+  CartItem, InsertCartItem, CartItemWithProduct,
+  HeroImage, InsertHeroImage
 } from "@shared/schema";
 
 export interface IStorage {
@@ -51,11 +52,13 @@ export class MemStorage implements IStorage {
   private orders: Map<number, Order>;
   private orderItems: Map<number, OrderItem>;
   private cartItems: Map<string, CartItem[]>;
+  private heroImages: Map<number, HeroImage>;
   private currentCategoryId: number;
   private currentProductId: number;
   private currentOrderId: number;
   private currentOrderItemId: number;
   private currentCartItemId: number;
+  private currentHeroImageId: number;
 
   constructor() {
     this.categories = new Map();
@@ -63,11 +66,13 @@ export class MemStorage implements IStorage {
     this.orders = new Map();
     this.orderItems = new Map();
     this.cartItems = new Map();
+    this.heroImages = new Map();
     this.currentCategoryId = 1;
     this.currentProductId = 1;
     this.currentOrderId = 1;
     this.currentOrderItemId = 1;
     this.currentCartItemId = 1;
+    this.currentHeroImageId = 1;
 
     this.initializeData();
   }
@@ -208,6 +213,45 @@ export class MemStorage implements IStorage {
       this.products.set(product.id, product);
     });
     this.currentProductId = 9;
+
+    // Initialize hero images
+    const heroImages: HeroImage[] = [
+      {
+        id: 1,
+        title: "Handcrafted with Love",
+        description: "Discover unique artisan pieces made with traditional techniques and modern style",
+        imageUrl: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=600",
+        order: 1,
+        isActive: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: 2,
+        title: "Artisan Pottery Collection",
+        description: "Beautiful ceramic pieces crafted by skilled artisans using time-honored methods",
+        imageUrl: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=600",
+        order: 2,
+        isActive: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: 3,
+        title: "Premium Yarn & Textiles",
+        description: "Hand-dyed yarns and woven textiles perfect for your creative projects",
+        imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=600",
+        order: 3,
+        isActive: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+    ];
+
+    heroImages.forEach(heroImage => {
+      this.heroImages.set(heroImage.id, heroImage);
+    });
+    this.currentHeroImageId = 4;
   }
 
   // Categories
@@ -425,6 +469,63 @@ export class MemStorage implements IStorage {
     
     const updated: Order = { ...order, status };
     this.orders.set(id, updated);
+    return updated;
+  }
+
+  // Hero Images
+  async getHeroImages(): Promise<HeroImage[]> {
+    return Array.from(this.heroImages.values())
+      .filter(image => image.isActive)
+      .sort((a, b) => a.order - b.order);
+  }
+
+  async getHeroImageById(id: number): Promise<HeroImage | undefined> {
+    return this.heroImages.get(id);
+  }
+
+  async createHeroImage(heroImage: InsertHeroImage): Promise<HeroImage> {
+    const id = this.currentHeroImageId++;
+    const newHeroImage: HeroImage = {
+      id,
+      title: heroImage.title,
+      description: heroImage.description || null,
+      imageUrl: heroImage.imageUrl,
+      order: heroImage.order || 0,
+      isActive: heroImage.isActive ?? true,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
+    this.heroImages.set(id, newHeroImage);
+    return newHeroImage;
+  }
+
+  async updateHeroImage(id: number, heroImage: Partial<InsertHeroImage>): Promise<HeroImage | undefined> {
+    const existing = this.heroImages.get(id);
+    if (!existing) return undefined;
+    
+    const updated: HeroImage = { 
+      ...existing, 
+      ...heroImage,
+      updatedAt: new Date()
+    };
+    this.heroImages.set(id, updated);
+    return updated;
+  }
+
+  async deleteHeroImage(id: number): Promise<boolean> {
+    return this.heroImages.delete(id);
+  }
+
+  async updateHeroImageOrder(id: number, order: number): Promise<HeroImage | undefined> {
+    const existing = this.heroImages.get(id);
+    if (!existing) return undefined;
+    
+    const updated: HeroImage = { 
+      ...existing, 
+      order,
+      updatedAt: new Date()
+    };
+    this.heroImages.set(id, updated);
     return updated;
   }
 }
