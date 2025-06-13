@@ -1,4 +1,4 @@
-import { pgTable, text, serial, integer, decimal, boolean, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, decimal, boolean, timestamp, varchar } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -46,6 +46,17 @@ export const cartItems = pgTable("cart_items", {
   quantity: integer("quantity").notNull(),
 });
 
+export const heroImages = pgTable("hero_images", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  description: text("description"),
+  imageUrl: text("image_url").notNull(),
+  order: integer("order").notNull().default(0),
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
 // Insert schemas
 export const insertCategorySchema = createInsertSchema(categories).omit({
   id: true,
@@ -68,6 +79,12 @@ export const insertCartItemSchema = createInsertSchema(cartItems).omit({
   id: true,
 });
 
+export const insertHeroImageSchema = createInsertSchema(heroImages).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
 // Types
 export type Category = typeof categories.$inferSelect;
 export type InsertCategory = z.infer<typeof insertCategorySchema>;
@@ -83,6 +100,9 @@ export type InsertOrderItem = z.infer<typeof insertOrderItemSchema>;
 
 export type CartItem = typeof cartItems.$inferSelect;
 export type InsertCartItem = z.infer<typeof insertCartItemSchema>;
+
+export type HeroImage = typeof heroImages.$inferSelect;
+export type InsertHeroImage = z.infer<typeof insertHeroImageSchema>;
 
 // Extended types for frontend
 export type ProductWithCategory = Product & {

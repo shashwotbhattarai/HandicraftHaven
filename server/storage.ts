@@ -35,6 +35,14 @@ export interface IStorage {
   getOrderById(id: number): Promise<OrderWithItems | undefined>;
   createOrder(order: InsertOrder, items: InsertOrderItem[]): Promise<Order>;
   updateOrderStatus(id: number, status: string): Promise<Order | undefined>;
+
+  // Hero Images
+  getHeroImages(): Promise<HeroImage[]>;
+  getHeroImageById(id: number): Promise<HeroImage | undefined>;
+  createHeroImage(heroImage: InsertHeroImage): Promise<HeroImage>;
+  updateHeroImage(id: number, heroImage: Partial<InsertHeroImage>): Promise<HeroImage | undefined>;
+  deleteHeroImage(id: number): Promise<boolean>;
+  updateHeroImageOrder(id: number, order: number): Promise<HeroImage | undefined>;
 }
 
 export class MemStorage implements IStorage {
