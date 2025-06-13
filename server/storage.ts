@@ -239,16 +239,10 @@ export class MemStorage implements IStorage {
   // Products
   async getProducts(): Promise<ProductWithCategory[]> {
     const products = Array.from(this.products.values()).filter(p => p.isActive);
-    return products
-      .map(product => {
-        const category = this.categories.get(product.categoryId);
-        if (!category) return null;
-        return {
-          ...product,
-          category
-        };
-      })
-      .filter((product): product is ProductWithCategory => product !== null);
+    return products.map(product => ({
+      ...product,
+      category: this.categories.get(product.categoryId)!
+    }));
   }
 
   async getProductById(id: number): Promise<ProductWithCategory | undefined> {
@@ -265,16 +259,10 @@ export class MemStorage implements IStorage {
     const products = Array.from(this.products.values())
       .filter(p => p.categoryId === categoryId && p.isActive);
     
-    return products
-      .map(product => {
-        const category = this.categories.get(product.categoryId);
-        if (!category) return null;
-        return {
-          ...product,
-          category
-        };
-      })
-      .filter((product): product is ProductWithCategory => product !== null);
+    return products.map(product => ({
+      ...product,
+      category: this.categories.get(product.categoryId)!
+    }));
   }
 
   async createProduct(product: InsertProduct): Promise<Product> {
@@ -317,31 +305,19 @@ export class MemStorage implements IStorage {
          p.description.toLowerCase().includes(lowercaseQuery))
       );
     
-    return products
-      .map(product => {
-        const category = this.categories.get(product.categoryId);
-        if (!category) return null;
-        return {
-          ...product,
-          category
-        };
-      })
-      .filter((product): product is ProductWithCategory => product !== null);
+    return products.map(product => ({
+      ...product,
+      category: this.categories.get(product.categoryId)!
+    }));
   }
 
   // Cart
   async getCartItems(sessionId: string): Promise<CartItemWithProduct[]> {
     const items = this.cartItems.get(sessionId) || [];
-    return items
-      .map(item => {
-        const product = this.products.get(item.productId);
-        if (!product) return null;
-        return {
-          ...item,
-          product
-        };
-      })
-      .filter((item): item is CartItemWithProduct => item !== null);
+    return items.map(item => ({
+      ...item,
+      product: this.products.get(item.productId)!
+    }));
   }
 
   async addToCart(item: InsertCartItem): Promise<CartItem> {
