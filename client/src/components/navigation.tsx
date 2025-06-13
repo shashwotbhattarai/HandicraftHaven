@@ -22,8 +22,8 @@ export function Navigation({ onSearch }: NavigationProps) {
 
   const navigationLinks = [
     { href: '/', label: 'Home' },
-    { href: '/#products', label: 'Products' },
-    { href: '/#categories', label: 'Categories' },
+    { href: '/products', label: 'Products' },
+    { href: '/categories', label: 'Categories' },
     { href: '/admin', label: 'Admin' },
   ];
 

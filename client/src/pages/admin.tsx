@@ -3,11 +3,20 @@ import { Navigation } from '@/components/navigation';
 import { ProductManagement } from '@/components/admin/product-management';
 import { CategoryManagement } from '@/components/admin/category-management';
 import { OrdersManagement } from '@/components/admin/orders-management';
+import { AdminLogin } from '@/components/admin-login';
+import { useAdminAuth } from '@/lib/admin-auth';
 import { Button } from '@/components/ui/button';
-import { Package, Tags, ShoppingBag, BarChart3 } from 'lucide-react';
+import { Package, Tags, ShoppingBag, BarChart3, LogOut, Home } from 'lucide-react';
+import { Link } from 'wouter';
 
 export default function Admin() {
   const [activeTab, setActiveTab] = useState('products');
+  const { isAuthenticated, logout } = useAdminAuth();
+
+  // Show login form if not authenticated
+  if (!isAuthenticated) {
+    return <AdminLogin />;
+  }
 
   const tabs = [
     { id: 'products', label: 'Products', icon: Package },
@@ -43,6 +52,22 @@ export default function Admin() {
       <section className="py-16 min-h-screen bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
+            <div className="flex justify-between items-center mb-6">
+              <Link href="/">
+                <Button variant="outline" className="flex items-center gap-2">
+                  <Home className="h-4 w-4" />
+                  Back to Store
+                </Button>
+              </Link>
+              <Button 
+                variant="outline" 
+                onClick={logout}
+                className="flex items-center gap-2 text-red-600 hover:text-red-700"
+              >
+                <LogOut className="h-4 w-4" />
+                Logout
+              </Button>
+            </div>
             <h1 className="text-4xl font-display font-bold text-artisan-brown mb-4">Admin Dashboard</h1>
             <p className="text-xl text-artisan-medium">Manage your products, categories, and orders</p>
           </div>
