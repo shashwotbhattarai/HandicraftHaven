@@ -35,7 +35,7 @@ export function Navigation({ onSearch }: NavigationProps) {
           <div className="flex items-center">
             <Link href="/">
               <h1 className="text-2xl font-display font-bold text-artisan-brown cursor-pointer">
-                Artisan Crafts
+                Everest Drishti Craft
               </h1>
             </Link>
           </div>
