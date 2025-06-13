@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(45, 29%, 97%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --muted: hsl(45, 13%, 91%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(20, 56%, 40%);
+  --primary-foreground: hsl(210, 40%, 98%);
+  --secondary: hsl(45, 13%, 91%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --accent: hsl(45, 13%, 91%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(20, 14.3%, 4.1%);
+  --radius: 0.5rem;
+  
+  /* Custom artisan colors */
+  --artisan-brown: hsl(20, 56%, 40%);
+  --artisan-chocolate: hsl(20, 61%, 52%);
+  --artisan-beige: hsl(45, 29%, 88%);
+  --artisan-antique: hsl(45, 29%, 97%);
+  --artisan-peru: hsl(30, 52%, 56%);
+  --artisan-burlywood: hsl(34, 57%, 70%);
+  --artisan-dark: hsl(20, 43%, 12%);
+  --artisan-medium: hsl(24, 32%, 29%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(20, 56%, 40%);
+  --primary-foreground: hsl(210, 40%, 98%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased;
+    background-color: var(--artisan-antique);
+    color: var(--artisan-dark);
+  }
+}
+
+.artisan-brown {
+  color: var(--artisan-brown);
+}
+
+.bg-artisan-brown {
+  background-color: var(--artisan-brown);
+}
+
+.artisan-chocolate {
+  color: var(--artisan-chocolate);
+}
+
+.bg-artisan-chocolate {
+  background-color: var(--artisan-chocolate);
+}
+
+.artisan-beige {
+  color: var(--artisan-beige);
+}
+
+.bg-artisan-beige {
+  background-color: var(--artisan-beige);
+}
+
+.artisan-antique {
+  color: var(--artisan-antique);
+}
+
+.bg-artisan-antique {
+  background-color: var(--artisan-antique);
+}
+
+.artisan-dark {
+  color: var(--artisan-dark);
+}
+
+.bg-artisan-dark {
+  background-color: var(--artisan-dark);
+}
+
+.artisan-medium {
+  color: var(--artisan-medium);
+}
+
+.bg-artisan-medium {
+  background-color: var(--artisan-medium);
+}
+
+.border-artisan-beige {
+  border-color: var(--artisan-beige);
+}
+
+.border-artisan-brown {
+  border-color: var(--artisan-brown);
+}
+
+.hover\:bg-artisan-brown:hover {
+  background-color: var(--artisan-brown);
+}
+
+.hover\:bg-artisan-chocolate:hover {
+  background-color: var(--artisan-chocolate);
+}
+
+.hover\:bg-artisan-burlywood:hover {
+  background-color: var(--artisan-burlywood);
+}
+
+.hover\:text-artisan-brown:hover {
+  color: var(--artisan-brown);
+}
+
+.hover\:text-artisan-chocolate:hover {
+  color: var(--artisan-chocolate);
+}
+
+.focus\:ring-artisan-brown:focus {
+  --tw-ring-color: var(--artisan-brown);
+}
