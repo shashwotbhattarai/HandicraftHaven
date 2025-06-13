@@ -33,8 +33,12 @@ export function CategoryManagement() {
   });
 
   const createCategoryMutation = useMutation({
-    mutationFn: (data: any) => apiRequest('POST', '/api/categories', data),
-    onSuccess: () => {
+    mutationFn: (data: any) => {
+      console.log('Creating category with data:', data);
+      return apiRequest('POST', '/api/categories', data);
+    },
+    onSuccess: (result) => {
+      console.log('Category created successfully:', result);
       queryClient.invalidateQueries({ queryKey: ['/api/categories'] });
       setIsDialogOpen(false);
       form.reset();
@@ -43,7 +47,8 @@ export function CategoryManagement() {
         description: "Category created successfully.",
       });
     },
-    onError: () => {
+    onError: (error) => {
+      console.error('Error creating category:', error);
       toast({
         title: "Error",
         description: "Failed to create category. Please try again.",
@@ -152,12 +157,11 @@ export function CategoryManagement() {
                 <FormField
                   control={form.control}
                   name="name"
-                  rules={{ required: 'Category name is required' }}
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Category Name</FormLabel>
                       <FormControl>
-                        <Input {...field} />
+                        <Input {...field} required />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -184,6 +188,7 @@ export function CategoryManagement() {
                     type="submit" 
                     className="bg-artisan-chocolate hover:bg-artisan-brown"
                     disabled={createCategoryMutation.isPending || updateCategoryMutation.isPending}
+                    onClick={() => console.log('Submit button clicked', form.getValues())}
                   >
                     {editingCategory ? 'Update Category' : 'Create Category'}
                   </Button>
