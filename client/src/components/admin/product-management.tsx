@@ -109,6 +109,7 @@ export function ProductManagement() {
   });
 
   const onSubmit = (data: ProductFormData) => {
+    console.log('Product form submitted with data:', data);
     const productData = {
       ...data,
       price: data.price,
