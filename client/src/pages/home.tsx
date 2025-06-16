@@ -114,12 +114,12 @@ export default function Home() {
             </div>
             <div>
               <h4 className="text-lg font-semibold mb-4">Stay Connected</h4>
-              <p className="text-gray-300 mb-4">Subscribe to get updates on new products and artisan stories.</p>
+              <p className="text-gray-300 mb-4">Subscribe to get updates on new products and craft stories.</p>
             </div>
           </div>
           <div className="border-t border-gray-600 mt-12 pt-8 text-center">
             <p className="text-gray-300">
-              &copy; 2024 Artisan Crafts. All rights reserved. Made with ❤️ for artisans everywhere.
+              &copy; 2024 Everest Drishti Crafts. All rights reserved. Made with ❤️ for artisans everywhere.
             </p>
           </div>
         </div>

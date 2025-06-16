@@ -149,3 +149,11 @@
 .focus\:ring-artisan-brown:focus {
   --tw-ring-color: var(--artisan-brown);
 }
+
+.btn-no-disabled-style:disabled {
+  opacity: 1 !important;
+  cursor: not-allowed !important;
+  filter: none !important;
+  background-color: var(--artisan-chocolate) !important;
+  color: white !important;
+}
