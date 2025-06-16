@@ -1,4 +1,4 @@
-# Artisan Crafts E-commerce Platform
+# Everest Drishti Crafts E-commerce Platform
 
 ## Overview
 
