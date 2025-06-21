@@ -57,6 +57,21 @@ export const heroImages = pgTable("hero_images", {
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
+export const makerStories = pgTable("maker_stories", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  age: integer("age"),
+  location: text("location"),
+  story: text("story").notNull(),
+  imageUrl: text("image_url").notNull(),
+  occupation: text("occupation"),
+  yearsWithUs: integer("years_with_us"),
+  favoriteProduct: text("favorite_product"),
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
 // Insert schemas
 export const insertCategorySchema = createInsertSchema(categories).omit({
   id: true,
@@ -80,6 +95,12 @@ export const insertCartItemSchema = createInsertSchema(cartItems).omit({
 });
 
 export const insertHeroImageSchema = createInsertSchema(heroImages).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertMakerStorySchema = createInsertSchema(makerStories).omit({
   id: true,
   createdAt: true,
   updatedAt: true,
