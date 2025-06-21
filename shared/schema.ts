@@ -59,15 +59,18 @@ export const heroImages = pgTable("hero_images", {
 
 export const makerStories = pgTable("maker_stories", {
   id: serial("id").primaryKey(),
-  name: text("name").notNull(),
+  makerName: text("maker_name").notNull(),
   age: integer("age"),
-  location: text("location"),
+  location: text("location").notNull(),
   story: text("story").notNull(),
   imageUrl: text("image_url").notNull(),
   occupation: text("occupation"),
-  yearsWithUs: integer("years_with_us"),
-  favoriteProduct: text("favorite_product"),
+  familyInfo: text("family_info"),
+  craftsSpecialty: text("crafts_specialty").notNull(),
+  yearsOfExperience: integer("years_of_experience"),
+  impactStatement: text("impact_statement"),
   isActive: boolean("is_active").notNull().default(true),
+  order: integer("order").notNull().default(0),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });
@@ -124,6 +127,9 @@ export type InsertCartItem = z.infer<typeof insertCartItemSchema>;
 
 export type HeroImage = typeof heroImages.$inferSelect;
 export type InsertHeroImage = z.infer<typeof insertHeroImageSchema>;
+
+export type MakerStory = typeof makerStories.$inferSelect;
+export type InsertMakerStory = z.infer<typeof insertMakerStorySchema>;
 
 // Extended types for frontend
 export type ProductWithCategory = Product & {

@@ -24,6 +24,7 @@ export function Navigation({ onSearch }: NavigationProps) {
     { href: '/', label: 'Home' },
     { href: '/products', label: 'Products' },
     { href: '/categories', label: 'Categories' },
+    { href: '/maker-stories', label: 'Maker Stories' },
     { href: '/admin', label: 'Admin' },
   ];
 

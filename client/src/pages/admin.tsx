@@ -3,10 +3,11 @@ import { Navigation } from '@/components/navigation';
 import { ProductManagement } from '@/components/admin/product-management';
 import { CategoryManagement } from '@/components/admin/category-management';
 import { OrdersManagement } from '@/components/admin/orders-management';
+import { MakerStoriesManagement } from '@/components/admin/maker-stories-management';
 import { AdminLogin } from '@/components/admin-login';
 import { useAdminAuth } from '@/lib/admin-auth';
 import { Button } from '@/components/ui/button';
-import { Package, Tags, ShoppingBag, BarChart3, LogOut, Home } from 'lucide-react';
+import { Package, Tags, ShoppingBag, BarChart3, LogOut, Home, Users } from 'lucide-react';
 import { Link } from 'wouter';
 
 export default function Admin() {
@@ -22,6 +23,7 @@ export default function Admin() {
     { id: 'products', label: 'Products', icon: Package },
     { id: 'categories', label: 'Categories', icon: Tags },
     { id: 'orders', label: 'Orders', icon: ShoppingBag },
+    { id: 'maker-stories', label: 'Maker Stories', icon: Users },
     { id: 'analytics', label: 'Analytics', icon: BarChart3 },
   ];
 
@@ -33,6 +35,8 @@ export default function Admin() {
         return <CategoryManagement />;
       case 'orders':
         return <OrdersManagement />;
+      case 'maker-stories':
+        return <MakerStoriesManagement />;
       case 'analytics':
         return (
           <div className="bg-white rounded-xl shadow-lg p-8">

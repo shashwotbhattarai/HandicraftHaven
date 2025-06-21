@@ -104,11 +104,21 @@ RESTful API endpoints organized by resource:
 └── dist/           # Production build output
 ```
 
+## Recent Changes
+
+✓ Migration from Replit Agent completed successfully
+✓ Database connection and schema established 
+✓ Application running on port 5000
+✓ Added Maker Stories feature with full CRUD functionality
+✓ Created dedicated admin management for maker stories
+✓ Sample maker stories added showcasing women artisans from Nepal
+
 ## Changelog
 
 ```
 Changelog:
-- June 13, 2025. Initial setup
+- January 13, 2025: Migration completed, Maker Stories feature added
+- June 13, 2025: Initial setup
 ```
 
 ## User Preferences

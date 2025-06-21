@@ -8,6 +8,7 @@ import { AdminAuthProvider } from "@/lib/admin-auth";
 import Home from "@/pages/home";
 import Products from "@/pages/products";
 import Categories from "@/pages/categories";
+import MakerStories from "@/pages/maker-stories";
 import Admin from "@/pages/admin";
 import NotFound from "@/pages/not-found";
 
@@ -17,6 +18,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/products" component={Products} />
       <Route path="/categories" component={Categories} />
+      <Route path="/maker-stories" component={MakerStories} />
       <Route path="/admin" component={Admin} />
       <Route component={NotFound} />
     </Switch>
