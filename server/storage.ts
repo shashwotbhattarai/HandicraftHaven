@@ -127,7 +127,7 @@ export class MemStorage implements IStorage {
 				categoryId: 2,
 				stock: 8,
 				imageUrl: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-				images: ["https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"],
+				images: ["https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600","https://m.media-amazon.com/images/I/71dd1FU9aBL._AC_SL1500_.jpg"],
 				isActive: true,
 				sku: "CBS002",
 			},
